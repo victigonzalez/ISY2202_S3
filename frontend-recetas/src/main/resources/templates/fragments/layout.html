@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<body>
+
+<!-- <head> común. Uso: th:replace="~{fragments/layout :: head('Título')}" -->
+<head th:fragment="head(titulo)">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title th:text="${titulo} + ' | Sabores del Mundo'">Sabores del Mundo</title>
+    <link rel="icon" type="image/svg+xml" th:href="@{/img/logo.svg}">
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+
+<!-- Cabecera con menú -->
+<header th:fragment="header" class="site-header">
+    <div class="container header-inner">
+        <a class="brand" th:href="@{/}">
+            <img th:src="@{/img/logo.svg}" alt="" width="36" height="36">
+            <span>Sabores del Mundo</span>
+        </a>
+        <nav class="nav">
+            <a th:href="@{/}">Inicio</a>
+            <a th:href="@{/buscar}">Buscar recetas</a>
+
+            <a sec:authorize="isAnonymous()" class="btn btn-small" th:href="@{/login}">Iniciar sesión</a>
+
+            <span sec:authorize="isAuthenticated()" class="user-chip">
+                Hola, <strong sec:authentication="name">usuario</strong>
+            </span>
+            <form sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post" class="inline-form">
+                <button type="submit" class="btn btn-small btn-outline">Cerrar sesión</button>
+            </form>
+        </nav>
+    </div>
+</header>
+
+<!-- Pie de página -->
+<footer th:fragment="footer" class="site-footer">
+    <div class="container">
+        <p>Sabores del Mundo &middot; Proyecto ISY2202 Seguridad y Calidad en el Desarrollo de Software &middot; Duoc UC</p>
+    </div>
+</footer>
+
+<!-- Tarjeta de receta reutilizable. Uso: th:replace="~{fragments/layout :: tarjeta(${r})}" -->
+<article th:fragment="tarjeta(r)" class="card">
+    <img class="card-img" th:src="@{/img/{f}(f=${r.imagen})}" th:alt="${r.nombre}">
+    <div class="card-body">
+        <h3 th:text="${r.nombre}">Nombre</h3>
+        <p class="card-desc" th:text="${r.descripcion}">Descripción</p>
+        <ul class="tags">
+            <li th:text="${r.tipoCocina}">Cocina</li>
+            <li th:text="${r.pais}">País</li>
+            <li th:text="${r.dificultad}"
+                th:classappend="${r.dificultad == 'Fácil'} ? 'tag-facil' : (${r.dificultad == 'Media'} ? 'tag-media' : 'tag-dificil')">Dificultad</li>
+            <li th:text="${r.tiempoTotal()} + ' min'">min</li>
+        </ul>
+        <a class="btn btn-block" th:href="@{/receta/{id}(id=${r.id})}">
+            <span sec:authorize="isAuthenticated()">Ver receta</span>
+            <span sec:authorize="isAnonymous()">&#128274; Inicia sesión para ver</span>
+        </a>
+    </div>
+</article>
+
+</body>
+</html>

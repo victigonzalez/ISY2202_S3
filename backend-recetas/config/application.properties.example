@@ -1,0 +1,11 @@
+# Copia este archivo como config/application.properties (mismo directorio)
+# y completa tus datos. Ese archivo está en .gitignore: NO se sube a GitHub.
+# Spring Boot lo lee automáticamente al ejecutar desde la carpeta del proyecto.
+
+# Base de datos (usar / en la ruta, no \)
+spring.datasource.url=jdbc:oracle:thin:@foro_tp?TNS_ADMIN=C:/wallets/Wallet_foro
+spring.datasource.username=RECETAS_APP
+spring.datasource.password=TU_CLAVE_AQUI
+
+# Contraseña del certificado HTTPS (la misma que usaste en keytool -storepass)
+server.ssl.key-store-password=TU_CLAVE_DEL_CERTIFICADO

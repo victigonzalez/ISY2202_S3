@@ -1,0 +1,30 @@
+# ---------- Compilación ----------
+target/
+*.class
+
+# ---------- IDE ----------
+.idea/
+*.iml
+.vscode/
+.settings/
+.project
+.classpath
+
+# ---------- Credenciales y secretos: NUNCA al repositorio ----------
+# Archivo local con la clave de Oracle y la del certificado
+config/application.properties
+# Wallet de Oracle Cloud
+Wallet_*/
+Wallet_*.zip
+*.sso
+*.jks
+# Certificado HTTPS (contiene la clave privada)
+*.p12
+*.pem
+
+# ---------- Varios ----------
+*.log
+log.txt
+*.zip
+.DS_Store
+Thumbs.db

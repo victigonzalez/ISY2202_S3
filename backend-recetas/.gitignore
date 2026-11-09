@@ -1,0 +1,13 @@
+target/
+*.iml
+.idea/
+.vscode/
+
+# Credenciales y wallet: nunca al repositorio
+config/application.properties
+Wallet_*/
+*.zip
+
+# Certificado HTTPS (contiene la clave privada)
+*.p12
+*.jks

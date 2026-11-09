@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{fragments/layout :: head('Inicio')}"></head>
+<body>
+<header th:replace="~{fragments/layout :: header}"></header>
+
+<main>
+    <!-- Portada -->
+    <section class="hero">
+        <div class="container hero-inner">
+            <div>
+                <h1>Recetas del mundo, paso a paso</h1>
+                <p>Descubre platos de distintos países, filtra por ingredientes o dificultad y cocina con instrucciones claras.</p>
+                <div class="hero-actions">
+                    <a class="btn" th:href="@{/buscar}">Buscar recetas</a>
+                    <a sec:authorize="isAnonymous()" class="btn btn-outline-light" th:href="@{/login}">Iniciar sesión</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Banners de avisos comerciales -->
+    <section class="container banners" aria-label="Avisos comerciales">
+        <a class="banner" href="#" th:href="@{/}">
+            <img th:src="@{/img/banner-cuchillos.svg}" alt="Aviso: Cuchillos Cordillera, 20% de descuento en sets de cocina">
+        </a>
+        <a class="banner" href="#" th:href="@{/}">
+            <img th:src="@{/img/banner-mercado.svg}" alt="Aviso: Mercado Verde, verduras frescas a domicilio">
+        </a>
+        <a class="banner" href="#" th:href="@{/}">
+            <img th:src="@{/img/banner-ollas.svg}" alt="Aviso: Ollas Patagonia, cocina con acero de calidad">
+        </a>
+    </section>
+
+    <!-- Más recientes -->
+    <section class="container section">
+        <h2>Recetas más recientes</h2>
+        <div class="grid">
+            <th:block th:each="r : ${recientes}"><article th:replace="~{fragments/layout :: tarjeta(${r})}"></article></th:block>
+        </div>
+    </section>
+
+    <!-- Más populares -->
+    <section class="container section">
+        <h2>Recetas más populares</h2>
+        <div class="grid">
+            <th:block th:each="r : ${populares}"><article th:replace="~{fragments/layout :: tarjeta(${r})}"></article></th:block>
+        </div>
+    </section>
+</main>
+
+<footer th:replace="~{fragments/layout :: footer}"></footer>
+</body>
+</html>

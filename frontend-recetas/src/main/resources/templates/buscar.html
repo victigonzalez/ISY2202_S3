@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Buscar recetas')}"></head>
+<body>
+<header th:replace="~{fragments/layout :: header}"></header>
+
+<main class="container section">
+    <h1>Buscar recetas</h1>
+
+    <form class="search-form" th:action="@{/buscar}" method="get">
+        <div class="field">
+            <label for="nombre">Nombre</label>
+            <input id="nombre" name="nombre" type="text" maxlength="60"
+                   placeholder="Ej: risotto" th:value="${nombre}">
+        </div>
+        <div class="field">
+            <label for="ingrediente">Ingrediente</label>
+            <input id="ingrediente" name="ingrediente" type="text" maxlength="60"
+                   placeholder="Ej: palta" th:value="${ingrediente}">
+        </div>
+        <div class="field">
+            <label for="tipoCocina">Tipo de cocina</label>
+            <select id="tipoCocina" name="tipoCocina">
+                <option value="">Todas</option>
+                <option th:each="t : ${tiposCocina}" th:value="${t}" th:text="${t}"
+                        th:selected="${t == tipoCocina}"></option>
+            </select>
+        </div>
+        <div class="field">
+            <label for="pais">País de origen</label>
+            <select id="pais" name="pais">
+                <option value="">Todos</option>
+                <option th:each="p : ${paises}" th:value="${p}" th:text="${p}"
+                        th:selected="${p == pais}"></option>
+            </select>
+        </div>
+        <div class="field">
+            <label for="dificultad">Dificultad</label>
+            <select id="dificultad" name="dificultad">
+                <option value="">Todas</option>
+                <option th:each="d : ${dificultades}" th:value="${d}" th:text="${d}"
+                        th:selected="${d == dificultad}"></option>
+            </select>
+        </div>
+        <div class="field field-actions">
+            <button class="btn" type="submit">Buscar</button>
+            <a class="btn btn-outline" th:href="@{/buscar}">Limpiar</a>
+        </div>
+    </form>
+
+    <p class="result-count">
+        <span th:text="${#lists.size(resultados)}">0</span> receta(s) encontrada(s)
+    </p>
+
+    <div class="grid" th:unless="${#lists.isEmpty(resultados)}">
+        <th:block th:each="r : ${resultados}"><article th:replace="~{fragments/layout :: tarjeta(${r})}"></article></th:block>
+    </div>
+
+    <div class="empty" th:if="${#lists.isEmpty(resultados)}">
+        No encontramos recetas con esos filtros. Prueba con otros criterios.
+    </div>
+</main>
+
+<footer th:replace="~{fragments/layout :: footer}"></footer>
+</body>
+</html>
