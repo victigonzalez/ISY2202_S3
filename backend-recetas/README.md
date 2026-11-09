@@ -9,13 +9,12 @@ Java 17 o superior, Maven. Se sirve **solo por HTTPS** en **https://localhost:84
    Las tablas de recetas quedan aisladas en su propio esquema `RECETAS_APP`, separadas de las del foro.
 2. Wallet de la base foro (*Conexión de base de datos* → *Descargar wallet*) descomprimida en `C:/wallets/Wallet_foro`.
    Alias de conexión: `foro_tp` (ver `tnsnames.ora` dentro de la wallet).
-3. Conectarse como **ADMIN** (SQL Developer o Database Actions) y ejecutar `db/crear_usuario.sql`
-   (antes cambia la contraseña que viene en el script).
+3. Conectarse como **ADMIN** (SQL Developer o Database Actions) y ejecutar `db/crear_usuario.sql`,
+   reemplazando antes la contraseña de ejemplo.
 4. Conectarse como **RECETAS_APP** y ejecutar `db/script_bd.sql` (F5 en SQL Developer).
    Al final debe mostrar 9 recetas, 70 ingredientes y 35 pasos.
 
 > `script_bd.sql` usa `DROP TABLE IF EXISTS` (Oracle 23ai o superior; la base foro es 26ai).
-> Las bases Always Free se detienen tras 7 días sin conexiones: si pasa, iniciarla desde la consola de Oracle Cloud.
 
 ## 2. Generar el certificado HTTPS (una sola vez)
 

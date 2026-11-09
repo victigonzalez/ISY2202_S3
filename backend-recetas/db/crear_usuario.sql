@@ -4,7 +4,7 @@
 --  La app NO usa ADMIN: usa RECETAS_APP, que solo puede trabajar en su propio esquema.
 -- =====================================================================
 
--- Cambia la contraseña antes de ejecutar.
+-- Reemplazar la contraseña de ejemplo antes de ejecutar.
 -- Reglas de Oracle Cloud: 12 a 30 caracteres, mayúscula, minúscula y número,
 -- sin comillas dobles y sin contener el nombre de usuario.
 CREATE USER RECETAS_APP IDENTIFIED BY "CambiaEstaClave2026";

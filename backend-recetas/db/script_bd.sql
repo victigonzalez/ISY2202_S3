@@ -6,7 +6,7 @@
 -- =====================================================================
 
 -- ---------- Limpieza (permite volver a ejecutar el script) ----------
--- IF EXISTS requiere Oracle 23ai o superior (lo normal en una base nueva de Oracle Cloud)
+-- IF EXISTS requiere Oracle 23ai o superior
 DROP TABLE IF EXISTS paso;
 DROP TABLE IF EXISTS ingrediente;
 DROP TABLE IF EXISTS receta;

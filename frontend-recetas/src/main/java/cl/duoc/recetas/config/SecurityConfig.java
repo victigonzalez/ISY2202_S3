@@ -61,11 +61,8 @@ public class SecurityConfig {
     }
 
     /**
-     * Tres usuarios en memoria. Las contraseñas se guardan como hash BCrypt,
-     * nunca en texto plano dentro del código.
-     *   admin   / Admin#2026
-     *   chef    / Chef#2026
-     *   usuario / Usuario#2026
+     * Tres usuarios en memoria (admin, chef y usuario).
+     * Las contraseñas se almacenan como hash BCrypt, nunca en texto plano.
      */
     @Bean
     public UserDetailsService userDetailsService() {

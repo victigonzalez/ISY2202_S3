@@ -33,8 +33,9 @@ Abrir: http://localhost:8080/recetas
 mvn test
 ```
 
-`SeguridadRutasTest` verifica que las rutas públicas respondan 200, que el detalle
-redirija al login sin sesión y que el login funcione con credenciales válidas.
+- `SeguridadRutasTest`: rutas públicas y privadas, login válido e inválido, cabeceras de
+  seguridad y que la búsqueda no refleje código `<script>`.
+- `CookieSesionTest`: la cookie de sesión lleva `HttpOnly` y `SameSite=Strict`.
 
 ## Medidas de seguridad (OWASP Top 10)
 
@@ -48,5 +49,4 @@ redirija al login sin sesión y que el login funcione con credenciales válidas.
 | Content-Security-Policy, X-Frame-Options, X-Content-Type-Options, Referrer-Policy, Permissions-Policy | Configuración de seguridad (A05) |
 | Página de error propia, sin trazas | Exposición de información (A05) |
 
-> El sitio se publica en HTTP porque la actividad pide `http://[IP]/recetas` en un entorno local.
-> En producción debería ir detrás de HTTPS y con la cookie `Secure` activada (riesgo residual).
+> En producción el sitio debe publicarse detrás de HTTPS y con la cookie `Secure` activada.
